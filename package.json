@@ -12,6 +12,9 @@
   "devDependencies": {
     "clipboardy": "^3.0.0",
     "cypress": "^9.7.0",
-    "cypress-real-events": "^1.7.0"
+    "cypress-real-events": "^1.7.0",
+    "@playwright/test": "^1.22.2",
+    "playwright": "^1.22.0"
+ 
   }
 }

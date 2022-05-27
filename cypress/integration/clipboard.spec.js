@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe("Clipboard spec", () => {
-  it('test', () => {
+  it('test', async () => {
     const textToCopy = 'test{selectall}'
     cy.document().then( doc => {
         doc.body.innerHTML = '<input id="inp">';
@@ -10,9 +10,9 @@ describe("Clipboard spec", () => {
     cy.get('#inp').type(textToCopy);
     cy.get('#inp').invoke('val', textToCopy)
 
-    // cy.document().then( doc => {
-    //     doc.execCommand('copy');
-    // });
+    cy.document().then( doc => {
+        doc.execCommand('copy');
+    });
 
     // cy.window().then((win) => {
     //   win.focus();
@@ -21,6 +21,6 @@ describe("Clipboard spec", () => {
     //   });
     // });
     
-    cy.task('getClipboard').should('contain', 'test');
+    await cy.task('getClipboard').should('contain', 'test');
   });
 })
