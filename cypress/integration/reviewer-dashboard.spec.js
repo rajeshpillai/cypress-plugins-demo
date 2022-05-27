@@ -2,10 +2,11 @@
 
 describe("Reviewer Dashboard", () => {
 
-  it.only('Playwright at work', () => {
-    cy.log('Attempt to integrate with safari');
-    cy.task('openSafari');
-    cy.log('Integrated with safari');
+  it.only('Playwright at work', async () => {
+    cy.log('Attempt to integrate with playwright');
+   cy.task('pwGetClipboardData').then(data => {
+      cy.log('Integrated with playwright: ' + data);
+    });
   })
 
   it('capture profile', async function() {

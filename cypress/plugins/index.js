@@ -27,7 +27,7 @@ module.exports = (on, config) => {
       const clipboard = clipboardy.readSync();
       return clipboard;
     },
-    openSafari: async () => {   
+    pwGetClipboardData: async () => {   
         return await playwright()
     },
   })
