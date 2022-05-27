@@ -1,13 +1,18 @@
 /// <reference types="cypress" />
 
+let url = undefined;
+
 describe("Reviewer Dashboard", () => {
 
   it.only('Playwright at work', async () => {
     cy.log('Attempt to integrate with playwright');
-   cy.task('pwGetClipboardData').then(data => {
+    cy.task('pwGetClipboardData').then(data => {
       cy.log('Integrated with playwright: ' + data);
+      url = data;
+      cy.visit(data);
     });
   })
+
 
   it('capture profile', async function() {
     cy.visit('https://dashboard.kyc.idfystaging.com/?client_id=QA-vkyc-testing_72c53aa1642b');
@@ -28,29 +33,13 @@ describe("Reviewer Dashboard", () => {
           permissions: ['clipboardReadWrite', 'clipboardSanitizedWrite'],
           origin: window.location.origin,
         },
-      }),
+      })
     );
     
     cy.get(':nth-child(1) > :nth-child(8) > .jss31 > :nth-child(1) > .MuiIconButton-label > .MuiSvgIcon-root').click({force: true}).then(async () => {
       cy.get('#client-snackbar').should('be.visible');
-
       await cy.task('getClipboard').should('contain', 'test');
-
-      // cy.window().its('navigator.clipboard')
-      //   .invoke('readText')
-      //   .should('equal', "hello world!");
-
     })
-
-
-    // cy.window().then(win =>
-    //   new Cypress.Promise((resolve, reject) =>
-    //     win.navigator
-    //       .clipboard
-    //       .readText()
-    //       .then(resolve)
-    //       .catch(reject))
-    // ).should('eq', '`myExpectedClipboardValue')
   
   })
 })

@@ -23,10 +23,6 @@ module.exports = (on, config) => {
       const clipboard = await clipboardy.read()
       return clipboard
     },
-    getClip: () => {
-      const clipboard = clipboardy.readSync();
-      return clipboard;
-    },
     pwGetClipboardData: async () => {   
         return await playwright()
     },
