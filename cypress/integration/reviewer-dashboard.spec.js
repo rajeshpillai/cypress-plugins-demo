@@ -9,12 +9,20 @@ describe("Reviewer Dashboard", () => {
     cy.task('pwGetClipboardData').then(data => {
       cy.log('Integrated with playwright: ' + data);
       url = data;
-      cy.visit(data);
+      cy.task('setItem', {
+        name: 'url',
+        value: url,
+      })
+      cy.visit(url);
     });
   })
 
+  it("Visits the page saved in the 'url' variable", () => {
+    const url = cy.task('getItem', 'url');
+    //cy.visit(url);
+  });
 
-  it('capture profile', async function() {
+  it.skip('capture profile', async function() {
     cy.visit('https://dashboard.kyc.idfystaging.com/?client_id=QA-vkyc-testing_72c53aa1642b');
    
  
