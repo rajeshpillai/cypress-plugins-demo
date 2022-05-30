@@ -23,8 +23,8 @@ exports.playwright = async function playwright() {
   const baseUrl = "https://dashboard.kyc.idfystaging.com/?client_id=QA-vkyc-testing_72c53aa1642b";
 
   await page.goto(baseUrl);
-  await page.fill('#username', `hritika.narvekar@idfy.com`);
-  await page.fill('#password',`Hritika@123`);
+  await page.fill('#username', `putyoursnamehere`);
+  await page.fill('#password',`Password please`);
 
   await page.click('#kc-login');
 
