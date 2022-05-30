@@ -28,14 +28,18 @@ exports.playwright = async function playwright() {
 
   await page.click('#kc-login');
 
-  // await page.waitForTimeout(5000);
+  await page.waitForTimeout(5000);
 
-  await page.locator("div.alert-error").not.toBeVisible();
+  try {
+    // await page.locator(':nth-child(1) > :nth-child(8) > .jss31 > :nth-child(1) > .MuiIconButton-label > .MuiSvgIcon-root');
+    await page.click(':nth-child(1) > :nth-child(8) > .jss31 > :nth-child(1) > .MuiIconButton-label > .MuiSvgIcon-root');
 
-  await page.locator(':nth-child(1) > :nth-child(8) > .jss31 > :nth-child(1) > .MuiIconButton-label > .MuiSvgIcon-root');
+  } catch (error) {
+    console.log("error: ", error);
+    await browser.close();
+    return;
+  }
   
-  await page.click(':nth-child(1) > :nth-child(8) > .jss31 > :nth-child(1) > .MuiIconButton-label > .MuiSvgIcon-root');
-
   const snackbar = await page.locator("#client-snackbar");
   await expect(snackbar).toBeVisible();  //cy.get('#client-snackbar').should('be.visible');
 
