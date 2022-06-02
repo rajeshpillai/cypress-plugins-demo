@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "clipboardy": "^3.0.0",
-    "cypress": "^9.7.0",
-    "cypress-real-events": "^1.7.0",
     "@playwright/test": "^1.22.2",
+    "clipboardy": "^3.0.0",
+    "cypress": "^10.0.1",
+    "cypress-browser-permissions": "^1.1.0",
+    "cypress-real-events": "^1.7.0",
     "playwright": "^1.22.0"
- 
   }
 }

@@ -1,11 +1,16 @@
 /// <reference types="cypress" />
 
+const { cypressBrowserPermissionsPlugin } = require('cypress-browser-permissions');
+
+
 let clipboardy;
 
 (async function () {
   clipboardy = await (await import('clipboardy')).default;
   console.log("clipboardy: ", clipboardy);
 })();
+
+
 
 /**
  * @type {Cypress.PluginConfig}
@@ -14,7 +19,8 @@ let clipboardy;
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
- 
+  config = cypressBrowserPermissionsPlugin(on, config)
+
   const { playwright } = require('../../playright/demo');
  
   const items = {};
@@ -56,4 +62,6 @@ module.exports = (on, config) => {
       throw new Error(msg)
     },
   })
+
+  return config;
 }
